@@ -2,7 +2,7 @@ class Aluno{
 
 nome;
 idade;
-nota;
+nota; 
 
 constructor(nome, idade, nota){
 
