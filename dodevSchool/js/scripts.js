@@ -1,56 +1,76 @@
 class Aluno{
 
-nome;
-idade;
-nota; 
+  nome;
+  idade;
+  nota; 
 
-constructor(nome, idade, nota){
-
-  this.nome = nome
-  this.idade = idade
-  this.nota = nota
-
-}
+  constructor(nome, idade, nota){
+    this.nome = nome
+    this.idade = idade
+    this.nota = nota
+  }
 
 }
 
-let alunosCadastrados = []
-let whilezin = true
+let alunosCadastrados = [];
+let desejaContinuar;
 
-function CadastrarAluno(nome2, idade2, nota2)
-{
-while(whilezin = true){
-nome2 = prompt("Digite o nome do aluno da FEBEM:")
-idade2 = parseInt(prompt("Digite a idade(apenas números): "))
-nota2 = Number(prompt("Insira a nota do meliante: "))
-let contador = 0
-
-class FEBEM{
-
-nome1;
-idade1;
-nota1;
-
-constructor(nome1, idade1, nota1){
-
-  this.nome1 = nome1
-  this.idade1 = idade1
-  this.nota1 = nota1
-
-
-
-}
+function cadastrarAluno(nome, idade, nota){
+  let aluno = new Aluno(nome,idade,nota);
+  alunosCadastrados.push(aluno);
 }
 
-let fundacao = new FEBEM(nome2, idade2 , nota2)
-alunosCadastrados[contador] = fundacao
-contador++
+do{
 
-let desejo = parseInt(prompt("Deseja parar de cadastrar? (1) SIM; (2) Não"))
-if(desejo === 1){
+  alert("FUNDAÇÃO FEBEM ROUBOU SE FERROU");
+  let nome = prompt("Qual o nome do mal elemento?");
+  let idade = parseInt ((prompt("Qual a idade do mal elemento?")))
+  let nota = Number((prompt("Qual a nota do meliante?")));
 
-  whilezin = false
-  
+  cadastrarAluno(nome, idade, nota);
+
+  desejaContinuar = prompt("Digite S para continuar a cadastrar alunos e N para parar:");
+
+}while(desejaContinuar != 'N');
+
+function calcularMedia(alunosCadastrados) {
+  let somaTotal = 0; 
+  alunosCadastrados.forEach(aluno => {
+    somaTotal += aluno.nota;
+  });
+  let media = somaTotal / alunosCadastrados.length;
+  return media;
 }
+
+console.log(calcularMedia(alunosCadastrados));
+
+function ordenaNota(alunos) {
+  alunos.sort((a, b) => b.nota - a.nota);
 }
+
+function ordenaPorIdade(alunos){
+  alunos.sort((a,b) => b.idade - a.idade);
 }
+
+function ordenaNome(alunos) {
+  alunos.sort((a, b) => a.nome.localeCompare(b.nome));
+}
+
+
+ordenaNota(alunosCadastrados);
+console.log('Alunos ordenados por notas:')
+alunosCadastrados.forEach(alunoNaPosicao => {
+  console.log(alunoNaPosicao.nome +" é " + alunoNaPosicao.nota)
+})
+
+ordenaPorIdade(alunosCadastrados);
+console.log('Alunos ordenados por idade:');
+alunosCadastrados.forEach(alunoNaPosicao => {
+console.log(alunoNaPosicao.nome + " é " +  alunoNaPosicao.idade)
+})
+
+ordenaNome(alunosCadastrados);
+console.log('Alunos ordenados por nome:');
+alunosCadastrados.forEach(alunoNaPosicao => {
+console.log(alunoNaPosicao.nome)
+})
